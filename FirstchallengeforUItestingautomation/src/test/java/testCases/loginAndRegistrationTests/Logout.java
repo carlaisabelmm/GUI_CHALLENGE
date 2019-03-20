@@ -1,7 +1,7 @@
 package testCases.loginAndRegistrationTests;
 
-import helpers.DataUser;
-import pages.BasePage;
+import helpers.PropertiesReader;
+import utils.DataUser;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -12,16 +12,19 @@ import org.openqa.selenium.support.PageFactory;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.LogoutPage;
+import utils.URLData;
 
 public class Logout {
 
     WebDriver driver;
+    URLData urlData = new URLData();
+    PropertiesReader propertiesReader = new PropertiesReader();
 
 
     @Test
     public void verifySuccessfullLogout(){
         LogoutPage logoutPage = PageFactory.initElements(driver,LogoutPage.class);
-       logoutPage.waitLoadInvisibilityOf(logoutPage.getPageLoader());
+        logoutPage.waitLoadInvisibilityOf(logoutPage.getPageLoader());
         logoutPage.logoutEcoffod();
 
         Assert.assertEquals(driver.findElement(By.xpath("//a[@href = '/login/']")).getText(),
@@ -34,12 +37,11 @@ public class Logout {
 
     @Before
     public void before(){
-        driver = HomePage.startBrowser("http://ecofoodmarket.herokuapp.com/");
+        driver = HomePage.startBrowser(urlData.getURLEcofood());
         LoginPage loginPage = PageFactory.initElements(driver,LoginPage.class);
         loginPage.waitLoadInvisibilityOf(loginPage.getPageLoader());
-        DataUser dataUser = new DataUser();
-        loginPage.loginEcofood(dataUser.getUsername(),
-                dataUser.getPassword());
+        loginPage.loginEcofood(propertiesReader.getValueByKey("user"),
+                propertiesReader.getValueByKey("passwordUser"));
 
     }
 

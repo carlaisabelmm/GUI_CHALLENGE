@@ -1,6 +1,6 @@
 package testCases.loginAndRegistrationTests;
 
-import helpers.DataUser;
+import utils.DataUser;
 import pages.BasePage;
 import org.junit.After;
 import org.junit.Assert;

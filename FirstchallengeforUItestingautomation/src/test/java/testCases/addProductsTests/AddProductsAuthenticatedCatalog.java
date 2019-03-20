@@ -1,7 +1,7 @@
 package testCases.addProductsTests;
 
-import helpers.DataUser;
-import pages.BasePage;
+import helpers.PropertiesReader;
+import utils.DataUser;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -12,10 +12,13 @@ import org.openqa.selenium.support.PageFactory;
 import pages.CatalogProductPage;
 import pages.HomePage;
 import pages.LoginPage;
+import utils.URLData;
 
 public class AddProductsAuthenticatedCatalog {
 
     WebDriver driver;
+    URLData urlData = new URLData();
+    PropertiesReader propertiesReader = new PropertiesReader();
 
     @Test
     public void verifyAddProductAuthenticatedCatalog(){
@@ -60,12 +63,11 @@ public class AddProductsAuthenticatedCatalog {
 
     @Before
     public void before(){
-        DataUser data = new DataUser();
-        driver = HomePage.startBrowser("http://ecofoodmarket.herokuapp.com/");
+        driver = HomePage.startBrowser(urlData.getURLEcofood());
         LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
         loginPage.waitLoadInvisibilityOf(loginPage.getPageLoader());
-        loginPage.loginEcofood(data.getUsername(),
-                data.getPassword());
+        loginPage.loginEcofood(propertiesReader.getValueByKey("user"),
+                propertiesReader.getValueByKey("passwordUser"));
     }
 
     @After

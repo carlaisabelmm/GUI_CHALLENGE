@@ -1,7 +1,7 @@
 package testCases.removeProductsTests;
 
-import helpers.DataUser;
-import pages.BasePage;
+import helpers.PropertiesReader;
+import utils.DataUser;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -12,10 +12,13 @@ import org.openqa.selenium.support.PageFactory;
 import pages.HomePage;
 import pages.HomeProductPage;
 import pages.LoginPage;
+import utils.URLData;
 
 public class EmptyShoppingCartAuthenticatedHomePage {
 
     WebDriver driver;
+    URLData urlData = new URLData();
+    PropertiesReader propertiesReader = new PropertiesReader();
 
     @Test
     public void verifyEmptyShoppingCartAuthenticatedHomePage(){
@@ -41,12 +44,11 @@ public class EmptyShoppingCartAuthenticatedHomePage {
 
     @Before
     public void before(){
-        DataUser dataUser = new DataUser();
-        driver = HomePage.startBrowser("http://ecofoodmarket.herokuapp.com/");
+        driver = HomePage.startBrowser(urlData.getURLEcofood());
         LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
         loginPage.waitLoadInvisibilityOf(loginPage.getPageLoader());
-          loginPage.loginEcofood(dataUser.getUsername(),
-                dataUser.getPassword());
+          loginPage.loginEcofood(propertiesReader.getValueByKey("user"),
+                propertiesReader.getValueByKey("passwordUser"));
     }
 
     @After

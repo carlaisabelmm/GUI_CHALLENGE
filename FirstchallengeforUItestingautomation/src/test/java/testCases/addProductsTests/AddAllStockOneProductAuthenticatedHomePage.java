@@ -1,5 +1,6 @@
 package testCases.addProductsTests;
 
+import helpers.PropertiesReader;
 import pages.BasePage;
 import org.junit.After;
 import org.junit.Assert;
@@ -11,10 +12,15 @@ import org.openqa.selenium.support.PageFactory;
 import pages.HomePage;
 import pages.HomeProductPage;
 import pages.LoginPage;
+import utils.URLData;
+
+import java.io.IOException;
 
 public class AddAllStockOneProductAuthenticatedHomePage {
 
     WebDriver driver;
+    URLData urlData = new URLData();
+    PropertiesReader propertiesReader = new PropertiesReader();
 
     @Test
     public void verifyAddAllStockOneProductAuthenticated() {
@@ -31,16 +37,15 @@ public class AddAllStockOneProductAuthenticatedHomePage {
 
     @Before
     public void before() {
-        driver = HomePage.startBrowser("http://ecofoodmarket.herokuapp.com/");
+        driver = HomePage.startBrowser(urlData.getURLEcofood());
         LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
         loginPage.waitLoadInvisibilityOf(loginPage.getPageLoader());
-        loginPage.loginEcofood("cmarquez",
-                "Ecofood1*");
+        loginPage.loginEcofood(propertiesReader.getValueByKey("user"),
+                propertiesReader.getValueByKey("passwordUser"));
 
 }
     @After
     public void after(){
-
         driver.quit();
     }
 }

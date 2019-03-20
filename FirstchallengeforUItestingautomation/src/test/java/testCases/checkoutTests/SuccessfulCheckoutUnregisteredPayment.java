@@ -1,7 +1,5 @@
 package testCases.checkoutTests;
 
-import helpers.CreditCardData;
-import helpers.DataUser;
 import helpers.PropertiesReader;
 import org.junit.After;
 import org.junit.Assert;
@@ -14,43 +12,39 @@ import pages.CheckoutPage;
 import pages.HomePage;
 import pages.HomeProductPage;
 import pages.LoginPage;
+import utils.URLData;
 
 import java.io.IOException;
 
 public class SuccessfulCheckoutUnregisteredPayment {
 
     WebDriver driver;
+    URLData urlData = new URLData();
+    PropertiesReader propertiesReader = new PropertiesReader();
+
 
     @Test
-    public void verifySuccessfullCheckoutUniregiteredPayment(){
-
-        CreditCardData creditCardData = new CreditCardData();
+    public void verifySuccessfullCheckoutUniregiteredPayment() throws IOException {
         CheckoutPage checkoutPage = PageFactory.initElements(driver, CheckoutPage.class);
         checkoutPage.checkoutPageEcofood();
 
-        checkoutPage.cardCreditData(creditCardData.getCardNumber(),
-                creditCardData.getExpirationDate(),
-                creditCardData.getCode());
+        checkoutPage.cardCreditData(propertiesReader.getValueByKey("cardNumber"),
+                propertiesReader.getValueByKey("expirationDate"),
+                propertiesReader.getValueByKey("codeCardNumber"));
 
         Assert.assertEquals(driver.findElement(By.xpath("//*[@id=\"exampleModalLong\"]/div/div/div[2]/text()")).getText(),"Orden realizada correctamente");
         System.out.println("The assertion passed, the checkout has been successfully added");
-
-
     }
 
     @Before
     public void before(){
-        DataUser dataUser = new DataUser();
-        driver = HomePage.startBrowser("http://ecofoodmarket.herokuapp.com/");
+        driver = HomePage.startBrowser(urlData.getURLEcofood());
         LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
         loginPage.waitLoadInvisibilityOf(loginPage.getPageLoader());
-        loginPage.loginEcofood(dataUser.getUsername(),
-                dataUser.getPassword());
+        loginPage.loginEcofood(propertiesReader.getValueByKey("user"),
+                propertiesReader.getValueByKey("passwordUser"));
         HomeProductPage homeProductPage = PageFactory.initElements(driver, HomeProductPage.class);
         homeProductPage.productHomePageEcofoodPlus();
-
-
-
     }
 
     @After
