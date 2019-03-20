@@ -1,14 +1,13 @@
 package testCases.checkoutTests;
 
-import helpers.PropertiesReader;
-import org.junit.Assert;
-import org.openqa.selenium.By;
-import pages.BasePage;
 import helpers.CreditCardData;
 import helpers.DataUser;
+import helpers.PropertiesReader;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import pages.CheckoutPage;
@@ -23,7 +22,8 @@ public class SuccessfulCheckoutUnregisteredPayment {
     WebDriver driver;
 
     @Test
-    public void verifySuccessfullCheckoutUniregiteredPayment() {
+    public void verifySuccessfullCheckoutUniregiteredPayment(){
+
         CreditCardData creditCardData = new CreditCardData();
         CheckoutPage checkoutPage = PageFactory.initElements(driver, CheckoutPage.class);
         checkoutPage.checkoutPageEcofood();

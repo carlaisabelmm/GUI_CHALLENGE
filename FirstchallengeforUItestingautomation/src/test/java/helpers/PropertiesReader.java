@@ -1,12 +1,24 @@
 package helpers;
 
-import java.util.ResourceBundle;
+import java.io.*;
+import java.util.Properties;
 
 public class PropertiesReader {
+    Properties properties = new Properties();
+    InputStream inputStream = null;
 
-    private  static ResourceBundle resourceBundle = ResourceBundle.getBundle("config");
+    public void dataFileFromConfigProperties() throws IOException {
+        try{
+            inputStream = new FileInputStream("C:\\Users\\cmarquez\\Downloads\\GUI_CHALLENGE-Properties\\GUI_CHALLENGE-Properties\\FirstchallengeforUItestingautomation\\src\\test\\resources\\configurations\\config.properties");
+            properties.load(inputStream);
+            } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
-    public ResourceBundle getResourceBundle() {
-        return resourceBundle;
+    public String getValueByKey(String key)  {
+        String KEY = properties.getProperty(key);
+        return KEY;
+
     }
 }
