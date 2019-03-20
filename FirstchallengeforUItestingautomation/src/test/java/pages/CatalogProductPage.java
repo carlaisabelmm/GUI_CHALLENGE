@@ -1,16 +1,15 @@
 package pages;
 
-import helpers.RandomHelper;
+import utils.RandomHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 import java.util.Random;
 
-public class CatalogProductPage {
+public class CatalogProductPage extends  BasePage{
 
     WebDriver driver;
     Random random =new Random();
@@ -18,8 +17,8 @@ public class CatalogProductPage {
     int count;
 
     public CatalogProductPage(WebDriver driver) {
-        this.driver = driver;
-    }
+        super(driver);
+        }
 
     @FindBy(how = How.XPATH, using = "//a[@href = '/catalogo/']")
     WebElement catalogLink;
@@ -41,8 +40,7 @@ public class CatalogProductPage {
 
     public void productsCatalogEcofood(){
         catalogLink.click();
-        BasePage basePage = PageFactory.initElements(driver, BasePage.class);
-        basePage.waitLoadInvisibilityOf(basePage.getPageLoader());
+        waitLoadInvisibilityOf(getPageLoader());
         int catalogSize = randomLimits.randomIntLimits(1,2);
 
         System.out.println(catalogSize);
@@ -75,8 +73,7 @@ public class CatalogProductPage {
 
     public void productCatalogFruitEcofood(){
         catalogLink.click();
-        BasePage basePage = PageFactory.initElements(driver, BasePage.class);
-        basePage.waitLoadInvisibilityOf(basePage.getPageLoader());
+        waitLoadInvisibilityOf(getPageLoader());
         fruitCategoryLink.click();
         int addProductsSize = randomLimits.randomIntLimits(1,productImageCatalog.size());
         for(int i=0; i < addProductsSize; i++) {
@@ -90,8 +87,7 @@ public class CatalogProductPage {
 
     public void productCatalogVegetableEcofood(){
         catalogLink.click();
-        BasePage basePage = PageFactory.initElements(driver, BasePage.class);
-        basePage.waitLoadInvisibilityOf(basePage.getPageLoader());
+        waitLoadInvisibilityOf(getPageLoader());
         vegetableCategoryLink.click();
         int addProductsSize = randomLimits.randomIntLimits(1,productImageCatalog.size());
         for(int i=0; i < addProductsSize; i++) {

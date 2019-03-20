@@ -20,17 +20,8 @@ public class AddProductsAuthenticatedCatalog {
     @Test
     public void verifyAddProductAuthenticatedCatalog(){
         CatalogProductPage catalogProductPage = PageFactory.initElements(driver,CatalogProductPage.class);
-        BasePage pageLoader = PageFactory.initElements(driver, BasePage.class);
-        pageLoader.waitLoadInvisibilityOf(pageLoader.getPageLoader());
+        catalogProductPage.waitLoadInvisibilityOf(catalogProductPage.getPageLoader());
         catalogProductPage.productsCatalogEcofood();
-
-        Assert.assertNotNull(catalogProductPage.getProductsAddedCounter());
-        System.out.println("Assertion passed," +
-                "there are not null elements on the list added");
-
-        Assert.assertNotNull(driver.findElement(By.className("totals")).getText());
-        System.out.println("Assertion passed, " +
-                "there are not null elements on the shopping cart");
 
         Assert.assertEquals(driver.findElement(By.className("totals")).getText(),
                 catalogProductPage.getProductsAddedCounter());
@@ -43,17 +34,8 @@ public class AddProductsAuthenticatedCatalog {
     @Test
     public void verifyAddProductAuthenticatedFruitCatalog(){
         CatalogProductPage catalogProductPage = PageFactory.initElements(driver,CatalogProductPage.class);
-        BasePage pageLoader = PageFactory.initElements(driver, BasePage.class);
-        pageLoader.waitLoadInvisibilityOf(pageLoader.getPageLoader());
+        catalogProductPage.waitLoadInvisibilityOf(catalogProductPage.getPageLoader());
         catalogProductPage.productCatalogFruitEcofood();
-
-        Assert.assertNotNull(catalogProductPage.getProductsAddedCounter());
-        System.out.println("Assertion passed, " +
-                "there are not null elements on the list added");
-
-        Assert.assertNotNull(driver.findElement(By.className("totals")).getText());
-        System.out.println("Assertion passed, " +
-                "there are not null elements on the shopping cart");
 
         Assert.assertEquals(driver.findElement(By.className("totals")).getText(),
                 catalogProductPage.getProductsAddedCounter());
@@ -66,17 +48,8 @@ public class AddProductsAuthenticatedCatalog {
     @Test
     public  void verifyAddProductAuthenticatedVegetableCatalog(){
         CatalogProductPage catalogProductPage = PageFactory.initElements(driver,CatalogProductPage.class);
-        BasePage pageLoader = PageFactory.initElements(driver, BasePage.class);
-        pageLoader.waitLoadInvisibilityOf(pageLoader.getPageLoader());
+        catalogProductPage.waitLoadInvisibilityOf(catalogProductPage.getPageLoader());
         catalogProductPage.productCatalogVegetableEcofood();
-
-        Assert.assertNotNull(catalogProductPage.getProductsAddedCounter());
-        System.out.println("Assertion passed, " +
-                "there are not null elements on the list added");
-
-        Assert.assertNotNull(driver.findElement(By.className("totals")).getText());
-        System.out.println("Assertion passed, " +
-                "there are not null elements on the shopping cart");
 
         Assert.assertEquals(driver.findElement(By.className("totals")).getText(),
                 catalogProductPage.getProductsAddedCounter());
@@ -90,8 +63,7 @@ public class AddProductsAuthenticatedCatalog {
         DataUser data = new DataUser();
         driver = HomePage.startBrowser("http://ecofoodmarket.herokuapp.com/");
         LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
-        BasePage basePage = PageFactory.initElements(driver, BasePage.class);
-        basePage.waitLoadInvisibilityOf(basePage.getPageLoader());
+        loginPage.waitLoadInvisibilityOf(loginPage.getPageLoader());
         loginPage.loginEcofood(data.getUsername(),
                 data.getPassword());
     }

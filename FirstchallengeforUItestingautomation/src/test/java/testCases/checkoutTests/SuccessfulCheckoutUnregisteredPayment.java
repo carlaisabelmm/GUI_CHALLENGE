@@ -1,5 +1,6 @@
 package testCases.checkoutTests;
 
+import helpers.PropertiesReader;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import pages.BasePage;
@@ -22,32 +23,27 @@ public class SuccessfulCheckoutUnregisteredPayment {
     WebDriver driver;
 
     @Test
-    public void verifySuccessfullCheckoutUniregiteredPayment() throws IOException {
+    public void verifySuccessfullCheckoutUniregiteredPayment() {
         CreditCardData creditCardData = new CreditCardData();
         CheckoutPage checkoutPage = PageFactory.initElements(driver, CheckoutPage.class);
         checkoutPage.checkoutPageEcofood();
-//
-////        File shot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-////        FileUtils.copyFile(shot,new File("C:\\Users\\Carla\\Documents\\shotCeckoutUnregistered1.jpg"));
 
-   //     checkoutPage.waitForWrongButton();
         checkoutPage.cardCreditData(creditCardData.getCardNumber(),
                 creditCardData.getExpirationDate(),
-                creditCardData.getExpirationDate());
+                creditCardData.getCode());
 
         Assert.assertEquals(driver.findElement(By.xpath("//*[@id=\"exampleModalLong\"]/div/div/div[2]/text()")).getText(),"Orden realizada correctamente");
         System.out.println("The assertion passed, the checkout has been successfully added");
 
-////div[@class='modal-body']
+
     }
 
     @Before
     public void before(){
         DataUser dataUser = new DataUser();
         driver = HomePage.startBrowser("http://ecofoodmarket.herokuapp.com/");
-        BasePage basePage = PageFactory.initElements(driver, BasePage.class);
-        basePage.waitLoadInvisibilityOf(basePage.getPageLoader());
         LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        loginPage.waitLoadInvisibilityOf(loginPage.getPageLoader());
         loginPage.loginEcofood(dataUser.getUsername(),
                 dataUser.getPassword());
         HomeProductPage homeProductPage = PageFactory.initElements(driver, HomeProductPage.class);
@@ -59,7 +55,7 @@ public class SuccessfulCheckoutUnregisteredPayment {
 
     @After
     public void after(){
-        //driver.quit();
+        driver.quit();
 
     }
 }

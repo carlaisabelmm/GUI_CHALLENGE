@@ -8,13 +8,13 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class CheckoutPage {
+public class CheckoutPage extends BasePage{
 
     WebDriver driver;
     int count;
 
     public CheckoutPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     @FindBy(how = How.XPATH, using = "//i[@class = 'fa fa-shopping-cart']")
@@ -49,16 +49,14 @@ public class CheckoutPage {
 
 
     public void checkoutPageEcofood(){
-        BasePage basePage = PageFactory.initElements(driver, BasePage.class);
-        basePage.waitLoadClickable(shoppingCartIcon);
+        waitLoadClickable(shoppingCartIcon);
         shoppingCartIcon.click();
         System.out.println(shoppingCartNumberOfElementsAdded.getText());
         checkoutButton.click();
     }
 
     public void calculateProductsAddedToTheShoppingCart(){
-        BasePage basePage = PageFactory.initElements(driver, BasePage.class);
-        basePage.waitToBeVisible(tuOrdenTableHead);
+        waitToBeVisible(tuOrdenTableHead);
 
         for(int i=0; i < productDetailTableBody.size(); i++){
            System.out.println(productDetailTableBody.get(i).getText());
@@ -67,9 +65,8 @@ public class CheckoutPage {
     }
 
     public void cardCreditData(String cardNumberField, String expirationDateField, String cardCodeField){
-        BasePage basePage = PageFactory.initElements(driver, BasePage.class);
-        basePage.waitLoadInvisibilityOf(basePage.getPageLoader());
-        basePage.waitLoadClickable(cardNumber);
+        waitLoadInvisibilityOf(getPageLoader());
+        waitLoadClickable(cardNumber);
         cardNumber.click();
         cardNumber.sendKeys(cardNumberField);
         cardExpirationDate.sendKeys(expirationDateField);
@@ -77,8 +74,6 @@ public class CheckoutPage {
         purchaseButton.click();
     }
 
-    //String cardNumberField, String expirationDateField,
-    //                               String cardCodeField
 
     public void waitForWrongButton(){
         BasePage basePage = PageFactory.initElements(driver, BasePage.class);

@@ -21,8 +21,7 @@ public class Logout {
     @Test
     public void verifySuccessfullLogout(){
         LogoutPage logoutPage = PageFactory.initElements(driver,LogoutPage.class);
-        BasePage basePage = PageFactory.initElements(driver, BasePage.class);
-        basePage.waitLoadInvisibilityOf(basePage.getPageLoader());
+       logoutPage.waitLoadInvisibilityOf(logoutPage.getPageLoader());
         logoutPage.logoutEcoffod();
 
         Assert.assertEquals(driver.findElement(By.xpath("//a[@href = '/login/']")).getText(),
@@ -37,8 +36,7 @@ public class Logout {
     public void before(){
         driver = HomePage.startBrowser("http://ecofoodmarket.herokuapp.com/");
         LoginPage loginPage = PageFactory.initElements(driver,LoginPage.class);
-        BasePage basePage = PageFactory.initElements(driver, BasePage.class);
-        basePage.waitLoadInvisibilityOf(basePage.getPageLoader());
+        loginPage.waitLoadInvisibilityOf(loginPage.getPageLoader());
         DataUser dataUser = new DataUser();
         loginPage.loginEcofood(dataUser.getUsername(),
                 dataUser.getPassword());

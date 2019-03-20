@@ -6,12 +6,12 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
-public class RegistrationPage {
+public class RegistrationPage extends BasePage{
 
     WebDriver driver;
 
     public RegistrationPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     @FindBy(how = How.XPATH, using = "//a[@href ='/regUser/']")
@@ -47,8 +47,7 @@ public class RegistrationPage {
         email.sendKeys(emailRegiter);
         pass1.sendKeys(pass1Register);
         pass2.sendKeys(pass2Register);
-        BasePage loadRegisterButton = PageFactory.initElements(driver, BasePage.class);
-        loadRegisterButton.waitLoadClickable(registrationButton);
+        waitLoadClickable(registrationButton);
         registrationButton.click();
 
     }

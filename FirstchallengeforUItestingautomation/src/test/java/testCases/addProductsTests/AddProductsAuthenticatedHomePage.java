@@ -17,20 +17,11 @@ import pages.LoginPage;
 public class AddProductsAuthenticatedHomePage {
 
     WebDriver driver;
-    CheckoutPage checkoutPage = new CheckoutPage(driver);
 
     @Test
     public void verifyAddProoductsAutehnticatedHomePage() {
         HomeProductPage homeProductPage = PageFactory.initElements(driver, HomeProductPage.class);
         homeProductPage.productHomePageEcofoodPlus();
-
-        Assert.assertNotNull(homeProductPage.getProductsAddedCounter());
-        System.out.println("Assertion passed, " +
-                "there are not null elements on the list added");
-
-        Assert.assertNotNull(driver.findElement(By.className("totals")).getText());
-        System.out.println("Assertion passed, " +
-                "there are not null elements on the shopping cart");
 
         Assert.assertEquals(driver.findElement(By.className("totals")).getText(),
                 homeProductPage.getProductsAddedCounter());
@@ -46,8 +37,7 @@ public class AddProductsAuthenticatedHomePage {
         DataUser data = new DataUser();
         driver = HomePage.startBrowser("http://ecofoodmarket.herokuapp.com/");
         LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
-        BasePage basePage = PageFactory.initElements(driver, BasePage.class);
-        basePage.waitLoadInvisibilityOf(basePage.getPageLoader());
+        loginPage.waitLoadInvisibilityOf(loginPage.getPageLoader());
         loginPage.loginEcofood(data.getUsername(),
                 data.getPassword());
     }

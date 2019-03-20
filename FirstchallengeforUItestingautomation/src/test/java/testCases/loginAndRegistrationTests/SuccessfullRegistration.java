@@ -18,8 +18,7 @@ public class SuccessfullRegistration {
     @Test
     public void verifySuccessRegistration(){
         RegistrationPage registrationPage = PageFactory.initElements(driver, RegistrationPage.class);
-        BasePage pageLoader = PageFactory.initElements(driver, BasePage.class);
-        pageLoader.waitLoadInvisibilityOf(pageLoader.getPageLoader());
+        registrationPage.waitLoadInvisibilityOf(registrationPage.getPageLoader());
         DataUser data = new DataUser();
         registrationPage.registrationEcofood(data.getName(),
                 data.getLastname(),

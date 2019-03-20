@@ -41,9 +41,9 @@ public class ProductDetailsAuthenticatedUser {
     public void before(){
         DataUser dataUser = new DataUser();
         driver = HomePage.startBrowser("http://ecofoodmarket.herokuapp.com/");
-        BasePage basePage = PageFactory.initElements(driver,  BasePage.class);
-        basePage.waitLoadInvisibilityOf(basePage.getPageLoader());
         LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        loginPage.waitLoadInvisibilityOf(loginPage.getPageLoader());
+
         loginPage.loginEcofood(dataUser.getUsername(),
                 dataUser.getPassword());
     }

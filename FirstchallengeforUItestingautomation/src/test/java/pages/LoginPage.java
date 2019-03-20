@@ -6,12 +6,12 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage {
+public class LoginPage extends BasePage {
 
     WebDriver driver;
 
     public LoginPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     @FindBy(how = How.XPATH, using = "//a[@href = '/login/']")
@@ -34,16 +34,13 @@ public class LoginPage {
         loginLink.click();
         username.sendKeys(usernameLogin);
         password.sendKeys(passwordLogin);
-        BasePage basePage = PageFactory.initElements(driver,BasePage.class);
-        basePage.waitLoadInvisibilityOf(basePage.getPageLoader());
-        BasePage loadLoginButton = PageFactory.initElements(driver, BasePage.class);
-        loadLoginButton.waitLoadClickable(loginButton);
+        waitLoadInvisibilityOf(getPageLoader());
+        waitLoadClickable(loginButton);
         loginButton.click();
     }
 
     public void waitForWrongButton(){
-        BasePage basePage = PageFactory.initElements(driver, BasePage.class);
-        basePage.waitToBeVisible(errorMessage);
+        waitToBeVisible(errorMessage);
     }
 
 

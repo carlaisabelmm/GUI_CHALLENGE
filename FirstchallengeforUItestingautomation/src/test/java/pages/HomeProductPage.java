@@ -1,17 +1,16 @@
 package pages;
 
-import helpers.RandomHelper;
+import utils.RandomHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.PageFactory;
 
 
 import java.util.List;
 import java.util.Random;
 
-public class HomeProductPage {
+public class HomeProductPage extends BasePage {
 
     WebDriver driver;
     Random random =new Random();
@@ -23,7 +22,7 @@ public class HomeProductPage {
     int decrease = 0;
 
     public HomeProductPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     @FindBy(how = How.XPATH, using = "//div[@class='miso-prd-qty']")
@@ -48,8 +47,7 @@ public class HomeProductPage {
     List<WebElement> productName;
 
     public void productHomePageEcofoodPlus() {
-        BasePage loadHomePage = PageFactory.initElements(driver, BasePage.class);
-        loadHomePage.waitLoadInvisibilityOf(loadHomePage.getPageLoader());
+        waitLoadInvisibilityOf(getPageLoader());
         int addProductsSize = randomLimits.randomIntLimits(1,productImageHomePage.size());
         for (int i=0; i <= addProductsSize; i++) {
             productImageHomePage.get(i).click();
@@ -61,8 +59,7 @@ public class HomeProductPage {
     }
 
     public void oneProductHomePageEcofoodPlus() {
-        BasePage loadHomePage = PageFactory.initElements(driver, BasePage.class);
-        loadHomePage.waitLoadInvisibilityOf(loadHomePage.getPageLoader());
+        waitLoadInvisibilityOf(getPageLoader());
         int positionRandom = randomLimits.randomIntLimits(1,productImageHomePage.size());
 
         for(int j=0; j < productImageHomePage.size(); j++) {
@@ -87,8 +84,7 @@ public class HomeProductPage {
 
 
     public void oneProductHomePageEcofoodDecrease() {
-        BasePage loadHomePage = PageFactory.initElements(driver, BasePage.class);
-        loadHomePage.waitLoadInvisibilityOf(loadHomePage.getPageLoader());
+        waitLoadInvisibilityOf(getPageLoader());
         int positionRandom = randomLimits.randomIntLimits(1,productImageHomePage.size());
 
         for(int j=0; j < productImageHomePage.size(); j++) {
@@ -117,8 +113,7 @@ public class HomeProductPage {
     }
 
     public void oneProductHomePageEcofoodDetail() {
-        BasePage loadHomePage = PageFactory.initElements(driver, BasePage.class);
-        loadHomePage.waitLoadInvisibilityOf(loadHomePage.getPageLoader());
+        waitLoadInvisibilityOf(getPageLoader());
         int positionRandom = randomLimits.randomIntLimits(1,productImageHomePage.size());
 
         for(int j=0; j < productImageHomePage.size(); j++) {

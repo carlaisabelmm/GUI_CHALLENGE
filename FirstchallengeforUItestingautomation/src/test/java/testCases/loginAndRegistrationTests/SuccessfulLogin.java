@@ -19,8 +19,7 @@ public class SuccessfulLogin {
     @Test
     public void verifySuccessfulLogin(){
         LoginPage loginPage = PageFactory.initElements(driver,LoginPage.class);
-        BasePage pageLoader = PageFactory.initElements(driver, BasePage.class);
-        pageLoader.waitLoadInvisibilityOf(pageLoader.getPageLoader());
+        loginPage.waitLoadInvisibilityOf(loginPage.getPageLoader());
         DataUser data =  new DataUser();
         loginPage.loginEcofood(data.getUsername(),
                 data.getPassword());

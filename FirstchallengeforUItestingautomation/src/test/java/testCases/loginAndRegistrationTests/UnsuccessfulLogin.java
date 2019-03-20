@@ -12,6 +12,8 @@ import org.openqa.selenium.support.PageFactory;
 import pages.HomePage;
 import pages.LoginPage;
 
+import java.security.acl.LastOwnerException;
+
 public class UnsuccessfulLogin {
 
     WebDriver driver;
@@ -20,8 +22,7 @@ public class UnsuccessfulLogin {
     @Test
     public void verifyUnsuccessfulRegistrationWrongUsername(){
         LoginPage loginPage = PageFactory.initElements(driver,LoginPage.class);
-        BasePage basePage = PageFactory.initElements(driver, BasePage.class);
-        basePage.waitLoadInvisibilityOf(basePage.getPageLoader());
+        loginPage.waitLoadInvisibilityOf(loginPage.getPageLoader());
         DataUser data = new DataUser();
         loginPage.loginEcofood(data.getWrongUsername(),
                 data.getPassword());
@@ -35,8 +36,7 @@ public class UnsuccessfulLogin {
     @Test
     public void verifyUnsuccessfulRegistrationWrongPassword(){
         LoginPage loginPage = PageFactory.initElements(driver,LoginPage.class);
-        BasePage basePage = PageFactory.initElements(driver, BasePage.class);
-        basePage.waitLoadInvisibilityOf(basePage.getPageLoader());
+        loginPage.waitLoadInvisibilityOf(loginPage.getPageLoader());
         DataUser data = new DataUser();
         loginPage.loginEcofood(data.getUsername(),
                 data.getWrongPassword());
@@ -50,8 +50,7 @@ public class UnsuccessfulLogin {
     @Test
     public void verifyUnsuccessfulRegistrationWrongPasswordAndUsername(){
         LoginPage loginPage = PageFactory.initElements(driver,LoginPage.class);
-        BasePage basePage = PageFactory.initElements(driver, BasePage.class);
-        basePage.waitLoadInvisibilityOf(basePage.getPageLoader());
+       loginPage.waitLoadInvisibilityOf(loginPage.getPageLoader());
         DataUser data = new DataUser();
         loginPage.loginEcofood(data.getWrongUsername(),
                 data.getWrongPassword());
@@ -67,8 +66,7 @@ public class UnsuccessfulLogin {
     @Test
     public void verifyUnsuccessfulRegistrationNullData(){
         LoginPage loginPage = PageFactory.initElements(driver,LoginPage.class);
-        BasePage basePage = PageFactory.initElements(driver, BasePage.class);
-        basePage.waitLoadInvisibilityOf(basePage.getPageLoader());
+        loginPage.waitLoadInvisibilityOf(loginPage.getPageLoader());
         DataUser data = new DataUser();
         loginPage.loginEcofood(data.getNullUsername(),
                 data.getNullPassword());

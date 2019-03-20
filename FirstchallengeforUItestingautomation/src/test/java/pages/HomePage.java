@@ -7,12 +7,12 @@ import org.openqa.selenium.support.How;
 
 import java.util.concurrent.TimeUnit;
 
-public class HomePage {
+public class HomePage extends BasePage {
 
     static WebDriver driver;
 
     public HomePage(WebDriver driver){
-        this.driver = driver;
+        super(driver);
     }
 
     public static WebDriver startBrowser(String url){

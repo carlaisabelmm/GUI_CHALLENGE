@@ -6,13 +6,13 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
-public class PaymentMethodsPage {
+public class PaymentMethodsPage extends BasePage {
 
     WebDriver driver;
 
     public PaymentMethodsPage(WebDriver driver) {
-        this.driver = driver;
-    }
+        super(driver);
+       }
 
     @FindBy (how = How.XPATH, using = "//a[@href = '/paymentMethods/']")
     WebElement paymentMethodsLink;
@@ -45,20 +45,18 @@ public class PaymentMethodsPage {
     public void paymentMethodEcofood(String cardNumberField, String expirationDateField,
                                      String cardCodeField){
         paymentMethodsLink.click();
-        BasePage basePage = PageFactory.initElements(driver, BasePage.class);
-        basePage.waitLoadInvisibilityOf(basePage.getPageLoader());
+        waitLoadInvisibilityOf(getPageLoader());
         addPaymentMethodButton.click();
         cardNumber.sendKeys(cardNumberField);
         carExpirationDate.sendKeys(expirationDateField);
         cardCode.sendKeys(cardCodeField);
         saveButton.click();
-        basePage.waitLoadClickable(thanksButton);
+        waitLoadClickable(thanksButton);
         thanksButton.click();
     }
 
     public void paymentMehodRegisteredCard(){
-        BasePage basePage = PageFactory.initElements(driver, BasePage.class);
-        basePage.waitLoadInvisibilityOf(basePage.getPageLoader());
+        waitLoadInvisibilityOf(getPageLoader());
         checkIconPaymentMethod.click();
         purchaseButton.click();
 

@@ -26,13 +26,6 @@ public class AddProductsUnauthenticated {
         loginPage.loginEcofood(dataUser.getUsername(),
                 dataUser.getPassword());
 
-        Assert.assertNotNull(homePageProduct.getProductsAddedCounterUnauthenticated());
-        System.out.println("Assertion passed, " +
-                "there are not null elements on the list added");
-
-        Assert.assertNotNull(driver.findElement(By.className("totals")).getText());
-        System.out.println("Assertion passed, " +
-                "there are not null elements on the shopping cart");
 
         Assert.assertEquals(driver.findElement(By.className("totals")).getText(),
                 homePageProduct.getProductsAddedCounterUnauthenticated());

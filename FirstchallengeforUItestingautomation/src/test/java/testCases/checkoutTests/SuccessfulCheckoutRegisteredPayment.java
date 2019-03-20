@@ -15,12 +15,11 @@ public class SuccessfulCheckoutRegisteredPayment {
     @Test
     public void verifySuccessfulCheckoutRegisteredPayment(){
         PaymentMethodsPage paymentMethodsPage = PageFactory.initElements(driver, PaymentMethodsPage.class);
+        CheckoutPage checkoutPage = PageFactory.initElements(driver, CheckoutPage.class);
         paymentMethodsPage.paymentMethodEcofood("312345678924354",
                 "02/19",
                 "272");
-        BasePage basePage = PageFactory.initElements(driver, BasePage.class);
-        basePage.waitLoadInvisibilityOf(basePage.getPageLoader());
-        CheckoutPage checkoutPage = PageFactory.initElements(driver, CheckoutPage.class);
+        paymentMethodsPage.waitLoadInvisibilityOf(paymentMethodsPage.getPageLoader());
         checkoutPage.checkoutPageEcofood();
         paymentMethodsPage.paymentMehodRegisteredCard();
     }
@@ -28,12 +27,11 @@ public class SuccessfulCheckoutRegisteredPayment {
     @Before
     public void before(){
         driver = HomePage.startBrowser("http://ecofoodmarket.herokuapp.com/");
-        BasePage basePage = PageFactory.initElements(driver, BasePage.class);
-        basePage.waitLoadInvisibilityOf(basePage.getPageLoader());
         LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        HomeProductPage homeProductPage = PageFactory.initElements(driver, HomeProductPage.class);
+        loginPage.waitLoadInvisibilityOf(loginPage.getPageLoader());
         loginPage.loginEcofood("cmarquez",
                 "Ecofood1*");
-        HomeProductPage homeProductPage = PageFactory.initElements(driver, HomeProductPage.class);
         homeProductPage.productHomePageEcofoodPlus();
 
     }

@@ -21,20 +21,6 @@ public class AddAllStockOneProductAuthenticatedHomePage {
         HomeProductPage homePageProduct = PageFactory.initElements(driver, HomeProductPage.class);
         homePageProduct.oneProductHomePageEcofoodPlus();
 
-        Assert.assertNotNull(homePageProduct.getProductsAddedCounterOneProduct());
-        System.out.println("Assertion passed, " +
-                "there are not null elements on the list added");
-
-        Assert.assertNotNull(driver.findElement(By.className("totals")).getText());
-        System.out.println("Assertion passed, " +
-                "there are not null elements on the shopping cart");
-
-        Assert.assertEquals(driver.findElement(By.className("totals")).getText(),
-                homePageProduct.getProductsAddedCounterOneProduct());
-        System.out.println("Assertion passed, " +
-                "the number of products added of the home page equals " +
-                "to the number of producs whithin the shopping cart");
-
         Assert.assertEquals(homePageProduct.getPositionRandom(),
                 homePageProduct.getProductsAddedCounterOneProduct());
         System.out.println("Assertion passed, " +
@@ -47,8 +33,7 @@ public class AddAllStockOneProductAuthenticatedHomePage {
     public void before() {
         driver = HomePage.startBrowser("http://ecofoodmarket.herokuapp.com/");
         LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
-        BasePage basePage = PageFactory.initElements(driver, BasePage.class);
-        basePage.waitLoadInvisibilityOf(basePage.getPageLoader());
+        loginPage.waitLoadInvisibilityOf(loginPage.getPageLoader());
         loginPage.loginEcofood("cmarquez",
                 "Ecofood1*");
 

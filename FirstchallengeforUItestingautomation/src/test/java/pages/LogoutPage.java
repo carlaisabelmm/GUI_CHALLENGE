@@ -5,13 +5,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-public class LogoutPage {
+public class LogoutPage extends  BasePage{
 
     WebDriver driver;
 
     public LogoutPage(WebDriver driver) {
-        this.driver = driver;
-    }
+        super(driver);
+        }
 
     @FindBy(how = How.XPATH, using = "//a[@href = '/logout/']")
     WebElement logoutLink;
